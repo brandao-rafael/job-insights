@@ -1,5 +1,8 @@
 from typing import List, Dict
-from jobs import read
+
+from src.insights.jobs import read
+
+# from jobs import read
 
 
 def get_unique_industries(path: str) -> List[str]:
@@ -21,7 +24,8 @@ def get_unique_industries(path: str) -> List[str]:
     industries = []
     for job in all_jobs:
         if job["industry"] not in industries:
-            industries.append(job["industry"])
+            if job["industry"] != "":
+                industries.append(job["industry"])
     return industries
 
 
