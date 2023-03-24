@@ -106,6 +106,9 @@ def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
         If `salary` isn't a valid integer
     """
 
+    if str(salary).isdigit() and isinstance(salary, str):
+        salary = int(salary)
+
     if salary is None:
         raise ValueError("salary must be a number")
 
@@ -135,4 +138,11 @@ def filter_by_salary_range(
     list
         Jobs whose salary range contains `salary`
     """
-    raise NotImplementedError
+    jobs_per_range = []
+    for job in jobs:
+        try:
+            if matches_salary_range(job, salary):
+                jobs_per_range.append(job)
+        except ValueError:
+            pass
+    return jobs_per_range
