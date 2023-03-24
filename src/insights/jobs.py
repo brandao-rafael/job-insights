@@ -31,9 +31,6 @@ def read(path: str) -> List[Dict]:
     return list_data
 
 
-# print(read("../../data/jobs.csv"))
-
-
 def get_unique_job_types(path: str) -> List[str]:
     """Checks all different job types and returns a list of them
 
@@ -49,7 +46,13 @@ def get_unique_job_types(path: str) -> List[str]:
     list
         List of unique job types
     """
-    raise NotImplementedError
+    all_jobs = read(path)
+    job_types = []
+    for job in all_jobs:
+        if job["job_type"] not in job_types:
+            job_types.append(job["job_type"])
+
+    return job_types
 
 
 def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
