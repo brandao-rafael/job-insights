@@ -1,5 +1,4 @@
 from typing import List, Dict
-
 from src.insights.jobs import read
 
 # from jobs import read
